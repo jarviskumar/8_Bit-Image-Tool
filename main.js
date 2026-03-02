@@ -110,4 +110,28 @@ btnText.innerText = "EXECUTE_RESIZE";
 btnBar.style.width = "0%";
 };
 }
+//reset button logic
+function softReset() {
+    // 1. Clear Inputs
+    document.getElementById('upload').value = "";
+    document.getElementById('width').value = "";
+    document.getElementById('height').value = "";
+    document.getElementById('targetKB').value = "";
+
+    // 2. Hide Output UI
+    document.getElementById('statsSection').classList.add('d-none');
+    document.getElementById('outputImage').style.display = 'none';
+    document.getElementById('placeholder').style.display = 'block';
+    
+    // 3. Hide Errors
+    const errorLog = document.getElementById('errorLog');
+    errorLog.classList.add('d-none');
+    errorLog.classList.remove('error-shake');
+
+    // 4. Reset Input Stats
+    const inputStats = document.getElementById('inputStats');
+    if(inputStats) inputStats.classList.add('d-none');
+
+    console.log("> SYSTEM_RESET_COMPLETE");
+}
     
