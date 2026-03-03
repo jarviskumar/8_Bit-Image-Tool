@@ -63,25 +63,24 @@
             </button>
         </div>
 
-        <div class="col-lg-6">
-            <h5 class="mb-4 text-uppercase fw-bold">> OUTPUT_PREVIEW</h5>
-            <div class="preview-box border">
-                <div id="placeholder" class="text-muted small">NO_DATA_AVAILABLE</div>
-                <img id="outputImage">
-            </div>
-
-            <div id="statsSection" class="d-none mt-3">
-                <div class="stats-label">Process_Report</div>
-                <div id="stats" class="fw-bold mb-3 small"></div>
-
-                <div class="d-flex gap-2">
-                    <a id="downloadBtn" download="RESIZED_IMG.jpg" class="flex-grow-1 text-decoration-none">
-                        <button class="btn btn-outline-success w-100 py-2 fw-bold">SAVE_TO_DISK</button>
-                    </a>
-                    <button onclick="softReset()" class="btn btn-outline-danger py-2 fw-bold">RESET</button>
-                </div>
-            </div>
+    <div class="col-lg-6">
+    <h6 class="mb-2 text-uppercase fw-bold text-muted" style="font-size: 0.75rem;">> PREVIEW_WINDOW</h6>
+    
+    <div class="preview-box">
+        <div id="placeholder" class="text-muted" style="font-size: 0.65rem;">NULL_DATA</div>
+        <img id="outputImage" alt="Result">
+    </div>
+    
+    <div id="statsSection" class="d-none">
+        <div id="stats" class="fw-bold text-truncate"></div>
+        <div class="d-flex gap-2">
+            <a id="downloadLink" download="RESIZED.jpg" class="flex-grow-1 text-decoration-none">
+                <button class="btn btn-outline-success w-100 py-1 fw-bold" style="font-size: 0.8rem;">SAVE_DISK</button>
+            </a>
+            <button onclick="softReset()" class="btn btn-outline-danger py-1 px-3 fw-bold" style="font-size: 0.8rem;">RESET</button>
         </div>
+    </div>
+    </div>
     </div>
 </div>
 
@@ -100,5 +99,6 @@ if ('serviceWorker' in navigator) {
 </body>
 
 </html>
+
 
 
