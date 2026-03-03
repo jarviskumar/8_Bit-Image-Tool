@@ -98,3 +98,35 @@ header {
     padding: 10px;
     display: none;
 }
+
+/* Compact & Fixed Preview Window */
+.preview-box {
+    background: #f0f0f0;
+    width: 100%;
+    /* 16:10 is a slimmer rectangle that saves vertical space */
+    aspect-ratio: 16 / 10; 
+    /* Hard limit: This ensures it never exceeds 220px in height */
+    max-height: 220px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000 !important;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#outputImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Keeps image proportions perfect within the small box */
+    padding: 5px;
+    display: none;
+}
+
+/* Tighten the stats text to save more space */
+#stats {
+    font-size: 0.7rem !important;
+    margin-bottom: 8px !important;
+    text-transform: uppercase;
+}
