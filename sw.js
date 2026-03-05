@@ -1,57 +1,40 @@
-const CACHE_NAME = 'precision-v3'; // Version increment
-const OFFLINE_URL = 'index.html';
+const CACHE_NAME = 'precision-vault-v4';
+// List EVERY local file you use
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './main.js',
   './manifest.json',
+  // External assets must be included to work offline
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css',
   'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap'
 ];
 
-// Install: Force caching of every single required file
+// Install: Save files to cache
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS);
-    })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
   );
   self.skipWaiting();
 });
 
-// Activate: Delete any old caches to prevent "Ghost" version errors
+// Activate: Cleanup old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) return caches.delete(key);
-        })
-      );
+      return Promise.all(keys.map((key) => {
+        if (key !== CACHE_NAME) return caches.delete(key);
+      }));
     })
   );
-  self.clients.claim();
 });
 
-// Fetch: The "Always Offline" logic
+// Fetch: Serve from cache first, then network
 self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') return;
-
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse; // Return from cache if found
-      }
-      
-      // If not in cache, try the network
-      return fetch(event.request).catch(() => {
-        // If network fails (Offline), force return the main page
-        if (event.request.mode === 'navigate') {
-          return caches.match(OFFLINE_URL);
-        }
-      });
+      return cachedResponse || fetch(event.request);
     })
   );
 });
