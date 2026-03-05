@@ -3,6 +3,8 @@ const OFFLINE_URL = 'index.html';
 const ASSETS = [
   './',
   './index.html',
+  './style.css',
+  './main.js',
   './manifest.json',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css',
   'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap'
